@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tất cả sách - BookLand</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../js/bookland.js"></script>
+
+  <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html#home-content">
+        <i class="fas fa-book-open me-2"></i>BookLand
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#home-content">Trang chủ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#store-content">Gian hàng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#about-us">Giới thiệu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#contact">Liên hệ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="products.html">Tất cả sách</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#orderHistoryModal">Lịch sử mua</a>
+          </li>
+        </ul>
+        <div class="d-flex" id="auth-section">
+          <a class="btn btn-outline-secondary me-2" id="cart-button" href="cart.html">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge rounded-pill badge-cart" id="cart-count">0</span>
+          </a>
+          <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Đăng nhập</button>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Đăng ký</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Products Section -->
+  <section class="products-section">
+    <div class="container">
+      <h2 class="mb-4 text-center">Tất cả sách</h2>
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="input-group">
+            <input type="text" class="form-control" id="search-input" placeholder="Tìm kiếm sách...">
+            <button class="btn btn-outline-primary" type="button" onclick="searchBooks()">Tìm</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="d-flex justify-content-md-end">
+            <select class="form-select w-auto me-2" id="category-filter" onchange="filterBooks()">
+              <option value="">Tất cả thể loại</option>
+              <option value="Tiểu thuyết">Tiểu thuyết</option>
+              <option value="Kỹ năng sống">Kỹ năng sống</option>
+              <option value="Khoa học">Khoa học</option>
+            </select>
+            <select class="form-select w-auto" id="price-filter" onchange="filterBooks()">
+              <option value="">Sắp xếp theo giá</option>
+              <option value="low-to-high">Thấp đến cao</option>
+              <option value="high-to-low">Cao đến thấp</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row" id="book-list">
+      </div>
+      <nav class="mt-4">
+        <ul class="pagination justify-content-center" id="pagination">
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6 mb-4">
+          <h5 class="mb-3">BookLand</h5>
+          <p>Kết nối tri thức - Khơi dậy đam mê đọc sách</p>
+          <div class="mb-3">
+            <i class="fas fa-envelope me-2"></i> info@bookland.vn
+          </div>
+          <div>
+            <i class="fas fa-phone me-2"></i> (028) 1234 5678
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+          <h5 class="mb-3">Hỗ trợ khách hàng</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Hướng dẫn đặt hàng</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Phương thức thanh toán</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Chính sách giao hàng</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Chính sách đổi trả</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Câu hỏi thường gặp</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+          <h5 class="mb-3">Về BookLand</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Giới thiệu</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Liên hệ</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Tuyển dụng</a></li>
+            <li class="mb-2"><a href="#" class="text-white text-decoration-none">Điều khoản dịch vụ</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Chính sách bảo mật</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4">
+          <h5 class="mb-3">Đăng ký nhận tin</h5>
+          <p>Nhận thông tin về sách mới và khuyến mãi đặc biệt</p>
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Email của bạn">
+            <button class="btn btn-danger" type="button">Đăng ký</button>
+          </div>
+          <h5 class="mb-3">Theo dõi chúng tôi</h5>
+          <div class="social-links">
+            <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white me-3"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4 bg-light">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0">© 2025 BookLand. Tất cả quyền được bảo lưu.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <div class="payment-methods">
+            <i class="fab fa-cc-visa me-2"></i>
+            <i class="fab fa-cc-mastercard me-2"></i>
+            <i class="fab fa-cc-paypal me-2"></i>
+            <i class="fab fa-cc-apple-pay"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Đăng nhập -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Đăng nhập</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="modal-login-form">
+            <div class="mb-3">
+              <label for="modal-login-email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="modal-login-email" required>
+            </div>
+            <div class="mb-3">
+              <label for="modal-login-password" class="form-label">Mật khẩu</label>
+              <input type="password" class="form-control" id="modal-login-password" required>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="modal-remember-me">
+              <label class="form-check-label" for="modal-remember-me">Ghi nhớ đăng nhập</label>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button type="submit" class="btn btn-primary">Đăng nhập</button>
+              <a href="#" class="text-decoration-none">Quên mật khẩu?</a>
+            </div>
+          </form>
+          <hr>
+          <div class="text-center">
+            <p>Chưa có tài khoản? <a href="#" id="switch-to-register" class="text-decoration-none">Đăng ký ngay</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Đăng ký -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Đăng ký tài khoản</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="modal-register-form">
+            <div class="mb-3">
+              <label for="modal-register-fullname" class="form-label">Họ và tên</label>
+              <input type="text" class="form-control" id="modal-register-fullname" required>
+            </div>
+            <div class="mb-3">
+              <label for="modal-register-email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="modal-register-email" required>
+            </div>
+            <div class="mb-3">
+              <label for="modal-register-phone" class="form-label">Số điện thoại</label>
+              <input type="tel" class="form-control" id="modal-register-phone" required>
+            </div>
+            <div class="mb-3">
+              <label for="modal-register-password" class="form-label">Mật khẩu</label>
+              <input type="password" class="form-control" id="modal-register-password" required>
+            </div>
+            <div class="mb-3">
+              <label for="modal-register-confirm-password" class="form-label">Xác nhận mật khẩu</label>
+              <input type="password" class="form-control" id="modal-register-confirm-password" required>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="modal-terms-agree" required>
+              <label class="form-check-label" for="modal-terms-agree">Tôi đồng ý với <a href="#" class="text-decoration-none">điều khoản sử dụng</a></label>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <button type="submit" class="btn btn-primary">Đăng ký</button>
+            </div>
+          </form>
+          <hr>
+          <div class="text-center">
+            <p>Đã có tài khoản? <a href="#" id="switch-to-login" class="text-decoration-none">Đăng nhập</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Lịch sử mua hàng -->
+  <div class="modal fade" id="orderHistoryModal" tabindex="-1" aria-labelledby="orderHistoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderHistoryModalLabel">Lịch sử mua hàng</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="order-history-list">
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>

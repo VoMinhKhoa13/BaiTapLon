@@ -1,0 +1,211 @@
+/* Root variables */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #e74c3c;
+    --light-bg: #f8f9fa;
+}
+
+/* Common styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 56px;
+    background-color: var(--light-bg);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: var(--secondary-color) !important;
+}
+
+.nav-link {
+    font-weight: 500;
+}
+
+.nav-link:hover,
+.active {
+    color: var(--secondary-color) !important;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 3rem 0;
+}
+
+.badge-cart {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--secondary-color);
+}
+
+.btn-primary {
+    background-color: #d35400;
+    border-color: #d35400;
+}
+
+.btn-primary:hover {
+    background-color: #e67e22;
+    border-color: #e67e22;
+}
+
+.btn-outline-primary {
+    color: #d35400;
+    border-color: #d35400;
+}
+
+.btn-outline-primary:hover {
+    background-color: #d35400;
+    border-color: #d35400;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info .dropdown-toggle {
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.user-info .dropdown-menu {
+    min-width: 150px;
+}
+
+/* Book details styles (from book-details.css) */
+.book-price {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.discount {
+    text-decoration: line-through;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.book-detail-section {
+    background-color: white;
+    padding: 3rem 0;
+}
+
+.book-detail img {
+    max-width: 100%;
+    height: auto;
+}
+
+.book-detail h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.book-detail .category {
+    color: #6c757d;
+    font-size: 1rem;
+}
+
+/* Cart styles (from cart.css) */
+.cart-table th,
+.cart-table td {
+    vertical-align: middle;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-control button {
+    width: 40px;
+    height: 40px;
+}
+
+.quantity-control input {
+    width: 60px;
+    text-align: center;
+}
+
+/* Products styles (from products.css) */
+.card {
+    transition: transform 0.3s;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.pagination .page-link {
+    color: #007bff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.pagination .page-link:hover {
+    color: #0056b3;
+}
+
+.products-section {
+    background-color: white;
+    padding: 3rem 0;
+}
+
+/* Checkout styles (from checkout.css) */
+.btn-checkout {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+}
+
+.btn-checkout:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+
+.discount-message {
+    color: green;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.discount-error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Index styles (from index.css) */
+.hero-carousel {
+    height: 600px;
+}
+
+.hero-carousel .carousel-item {
+    height: 600px;
+}
+
+.hero-carousel .carousel-item img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.store-section {
+    background-color: white;
+    padding: 3rem 0;
+}
+
+.about-section {
+    background-color: var(--light-bg);
+    padding: 3rem 0;
+}
+
+.contact-section {
+    background-color: white;
+    padding: 3rem 0;
+}
