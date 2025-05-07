@@ -684,6 +684,15 @@ document.addEventListener('DOMContentLoaded', function () {
       const password = document.getElementById('modal-register-password').value;
       const confirmPassword = document.getElementById('modal-register-confirm-password').value;
       const termsAgreed = document.getElementById('modal-terms-agree').checked;
+      const phoneError = document.getElementById('phone-error');
+
+      // Kiểm tra số điện thoại chỉ chứa số
+      if (!/^\d+$/.test(phone)) {
+        phoneError.style.display = 'block';
+        return;
+      } else {
+        phoneError.style.display = 'none';
+      }
 
       if (!termsAgreed) {
         alert('Vui lòng đồng ý với điều khoản sử dụng!');
