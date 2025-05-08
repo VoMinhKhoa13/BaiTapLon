@@ -328,7 +328,7 @@ function displayBookDetails() {
   }
 }
 
-// Cart functions from cart.js
+// Cart functions fromronics
 function displayCart() {
   const cartItems = document.getElementById('cart-items');
   const cartTotal = document.getElementById('cart-total');
@@ -675,23 +675,91 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const registerForm = document.getElementById('modal-register-form');
   if (registerForm) {
+    // Elements for validation
+    const fullnameInput = document.getElementById('modal-register-fullname');
+    const emailInput = document.getElementById('modal-register-email');
+    const phoneInput = document.getElementById('modal-register-phone');
+    const fullnameError = document.getElementById('fullname-error');
+    const emailError = document.getElementById('email-error');
+    const phoneError = document.getElementById('phone-error');
+
+    // Validation functions
+    const validateFullname = (value) => {
+      const fullnameRegex = /^([A-Z][a-z]*\s+)+[A-Z][a-z]*$/;
+      if (!value) {
+        fullnameError.textContent = 'Vui lòng nhập họ và tên!';
+        fullnameError.style.display = 'block';
+        return false;
+      } else if (!fullnameRegex.test(value)) {
+        fullnameError.textContent = 'Tên phải có ít nhất 2 từ, mỗi từ bắt đầu bằng chữ in hoa!';
+        fullnameError.style.display = 'block';
+        return false;
+      } else {
+        fullnameError.style.display = 'none';
+        return true;
+      }
+    };
+
+    const validateEmail = (value) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!value) {
+        emailError.textContent = 'Vui lòng nhập email!';
+        emailError.style.display = 'block';
+        return false;
+      } else if (!emailRegex.test(value)) {
+        emailError.textContent = 'Vui lòng nhập email hợp lệ!';
+        emailError.style.display = 'block';
+        return false;
+      } else {
+        emailError.style.display = 'none';
+        return true;
+      }
+    };
+
+    const validatePhone = (value) => {
+      if (!value) {
+        phoneError.textContent = 'Vui lòng nhập số điện thoại!';
+        phoneError.style.display = 'block';
+        return false;
+      } else if (!/^\d+$/.test(value)) {
+        phoneError.textContent = 'Số điện thoại chỉ được chứa các ký tự số!';
+        phoneError.style.display = 'block';
+        return false;
+      } else {
+        phoneError.style.display = 'none';
+        return true;
+      }
+    };
+
+    // Real-time validation on input
+    if (fullnameInput) {
+      fullnameInput.addEventListener('input', () => validateFullname(fullnameInput.value));
+    }
+    if (emailInput) {
+      emailInput.addEventListener('input', () => validateEmail(emailInput.value));
+    }
+    if (phoneInput) {
+      phoneInput.addEventListener('input', () => validatePhone(phoneInput.value));
+    }
+
+    // Form submission
     registerForm.addEventListener('submit', function (e) {
       e.preventDefault();
       console.log('Register form submitted');
-      const fullname = document.getElementById('modal-register-fullname').value;
-      const email = document.getElementById('modal-register-email').value;
-      const phone = document.getElementById('modal-register-phone').value;
+      const fullname = fullnameInput.value;
+      const email = emailInput.value;
+      const phone = phoneInput.value;
       const password = document.getElementById('modal-register-password').value;
       const confirmPassword = document.getElementById('modal-register-confirm-password').value;
       const termsAgreed = document.getElementById('modal-terms-agree').checked;
-      const phoneError = document.getElementById('phone-error');
 
-      // Kiểm tra số điện thoại chỉ chứa số
-      if (!/^\d+$/.test(phone)) {
-        phoneError.style.display = 'block';
+      // Validate all fields
+      const isFullnameValid = validateFullname(fullname);
+      const isEmailValid = validateEmail(email);
+      const isPhoneValid = validatePhone(phone);
+
+      if (!isFullnameValid || !isEmailValid || !isPhoneValid) {
         return;
-      } else {
-        phoneError.style.display = 'none';
       }
 
       if (!termsAgreed) {
@@ -713,7 +781,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       if (users[email]) {
-        alert('Email đã được đăng ký!');
+        emailError.textContent = 'Email đã được đăng ký!';
+        emailError.style.display = 'block';
         return;
       }
 
